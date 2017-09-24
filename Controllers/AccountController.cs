@@ -51,6 +51,22 @@ namespace auth
             }
         }
 
+        [Route("verify")]
+        [HttpPost]
+        public IActionResult Verify([FromBody] ApplicationUser user)
+        {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            if (_userRepository.CheckVerifycode(user.phone,user.code)){
+                return StatusCode(200);
+            }
+            else{
+                return BadRequest();
+            }
+        }
+        
         [Route("verifycode/{phone}")]
         [HttpGet]
         public IActionResult GetVerifycode(string phone)
@@ -81,22 +97,6 @@ namespace auth
                 return BadRequest();
             }
             if (_userRepository.ResetPassword(user.phone,user.code,user.password)){
-                return StatusCode(200);
-            }
-            else{
-                return BadRequest();
-            }
-        }
-
-        [Route("verify")]
-        [HttpPost]
-        public IActionResult Verify([FromBody] ApplicationUser user)
-        {
-            if (user == null)
-            {
-                return BadRequest();
-            }
-            if (_userRepository.CheckVerifycode(user.phone,user.code)){
                 return StatusCode(200);
             }
             else{

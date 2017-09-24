@@ -47,7 +47,7 @@ namespace auth
                 request.SignName = signname;
                 request.TemplateCode = templatecode;
                 request.PhoneNumbers = phone;
-                request.TemplateParam = "{\"number\":\""+code+"\"}"; //"123456";
+                request.TemplateParam = "{\"number\":\""+code+"\"}";
                 SendSmsResponse httpResponse = acsClient.GetAcsResponse(request);
             } catch (ServerException e) {
                 _logger.LogInformation("ServerException:"+e.ErrorMessage);

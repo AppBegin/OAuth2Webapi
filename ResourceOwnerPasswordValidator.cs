@@ -22,11 +22,15 @@ namespace auth
             try
             {
                 await Task.Yield();
-                //get your user model from db (by username - in my case its email)
+                //get your user model from db (by username - in my case its phone)
                 var user = _userRepository.FindByPhone(context.UserName);
                 if (user != null)
                 {
-                    //check if password match - remember to hash password if stored as hash in db
+                    if ( ! user.ifValidate){
+                        context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, "Phone does not Validate.");
+                        return;
+                    }
+                    //check if password match 
                     if  (Crypto.VerifyHashedPassword(user.password,context.Password)) {
                         //set the result
                         context.Result = new GrantValidationResult(

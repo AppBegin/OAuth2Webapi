@@ -13,6 +13,5 @@ namespace auth
         {
         	return Redirect("https://github.com/AppBegin/OAuth2Webapi");
         }
-
     }
 }

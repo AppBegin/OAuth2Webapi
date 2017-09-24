@@ -88,7 +88,7 @@ namespace auth
             string sqlquery = "update ApplicationUser set ifValidate = 1 , code = @newcode WHERE phone = @phone and code = @verifycode";
             using (IDbConnection dbConnection = Connection)
             {
-                int rtn = dbConnection.Execute(sqlquery);
+                int rtn = dbConnection.Execute(sqlquery,new { newcode = newcode, phone = phone, verifycode=verifycode });
                 return (rtn>0);
             }
         } 
@@ -98,10 +98,10 @@ namespace auth
             Random rd = new Random();
             var newcode = rd.Next(100000, 999999).ToString();
             password = Crypto.HashPassword(password);
-            string sqlquery = "update ApplicationUser set password = @password ,code = @newcode WHERE phone = @phone and code = @verifycode";
+            string sqlquery = "update ApplicationUser set password = @password,code = @newcode WHERE phone = @phone and code = @verifycode";
             using (IDbConnection dbConnection = Connection)
             {
-                int rtn = dbConnection.Execute(sqlquery);
+                int rtn = dbConnection.Execute(sqlquery,new { password = password, newcode = newcode, phone = phone, verifycode = verifycode });
                 return (rtn>0);
             }
         } 
