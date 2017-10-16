@@ -25,29 +25,29 @@ namespace auth
         {
             if (user == null)
             {
-                return BadRequest();
+                return BadRequest("{}");
             }
             if (! regex.IsMatch(user.phone))
             {
-                return BadRequest();
+                return BadRequest("{}");
             }
             if ( user.password.Length < 6)
             {
-                return BadRequest();
+                return BadRequest("{}");
             }
             if (_userRepository.CheckPhone(user.phone))
             {
-                return BadRequest();
+                return BadRequest("{}");
             }
             Random rd = new Random();
             int num = rd.Next(100000, 999999);
             user.code = num.ToString();
             if (_userRepository.Add(user)){
                 _smsSender.SendSmsAsync(user.phone,user.code);
-                return StatusCode(201);
+                return StatusCode(201,"{}");
             }
             else{
-                return BadRequest();
+                return BadRequest("{}");
             }
         }
 
