@@ -14,11 +14,11 @@ namespace auth
     // For more details see this link http://go.microsoft.com/fwlink/?LinkID=532713
     public class AuthMessageSender : IEmailSender, ISmsSender
     {
-        private readonly ILogger<AuthMessageSender> _logger;
+        private readonly ILogger<AliAuthMessageSender> _logger;
 
         string accesskey,secret,signname,templatecode;
 
-        public AuthMessageSender(ILogger<AuthMessageSender> logger,IConfiguration configuration)
+        public AuthMessageSender(ILogger<AliAuthMessageSender> logger,IConfiguration configuration)
         {
             _logger = logger;
             accesskey = configuration.GetConnectionString("accesskey");

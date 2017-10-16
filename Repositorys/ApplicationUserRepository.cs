@@ -67,7 +67,9 @@ namespace auth
             using (IDbConnection dbConnection = Connection)
             {
                 var user = dbConnection.Query<ApplicationUser>(sqlquery,new { phone = phone }).SingleOrDefault();
-                return (user.phone == phone);
+                if (user is null)
+                    {return false;}
+                return true;
             }
         } 
 
