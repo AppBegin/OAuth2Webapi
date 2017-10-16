@@ -25,19 +25,19 @@ namespace auth
         {
             if (user == null)
             {
-                return BadRequest("{}");
+                return BadRequest(user);
             }
             if (! regex.IsMatch(user.phone))
             {
-                return BadRequest("{}");
+                return BadRequest(user);
             }
             if ( user.password.Length < 6)
             {
-                return BadRequest("{}");
+                return BadRequest(user);
             }
             if (_userRepository.CheckPhone(user.phone))
             {
-                return BadRequest("{}");
+                return BadRequest(user);
             }
             Random rd = new Random();
             int num = rd.Next(100000, 999999);
@@ -47,7 +47,7 @@ namespace auth
                 return StatusCode(201,user);
             }
             else{
-                return BadRequest("{}");
+                return BadRequest(user);
             }
         }
 
