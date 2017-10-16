@@ -44,7 +44,7 @@ namespace auth
             user.code = num.ToString();
             if (_userRepository.Add(user)){
                 _smsSender.SendSmsAsync(user.phone,user.code);
-                return StatusCode(201,"{}");
+                return StatusCode(201,user);
             }
             else{
                 return BadRequest("{}");
