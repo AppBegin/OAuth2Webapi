@@ -37,7 +37,7 @@ namespace auth
         public Task SendSmsAsync(string phone, string code)
         {
             // Plug in your SMS service here to send a text message.
-            string product = "Dysmsapi";
+            /*string product = "Dysmsapi";
             string domain = "dysmsapi.aliyuncs.com";
             IClientProfile profile = DefaultProfile.GetProfile("cn-hangzhou", accesskey, secret);
             DefaultProfile.AddEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
@@ -55,7 +55,7 @@ namespace auth
             catch (ClientException e) {
                 _logger.LogInformation("ClientException:"+e.ErrorMessage);
             }
-            _logger.LogInformation("SMS: {number}, Message: {message}", phone, code);
+            _logger.LogInformation("SMS: {number}, Message: {message}", phone, code);*/
             return Task.FromResult(0);
         }
     }
