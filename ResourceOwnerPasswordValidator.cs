@@ -27,7 +27,7 @@ namespace auth
                 if (user != null)
                 {
                     if ( ! user.ifValidate){
-                        context.Result = new GrantValidationResult(TokenRequestErrors.InvalidRequest, "Phone does not Validate.");
+                        context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, "PhoneNotValidate");
                         return;
                     }
                     //check if password match 
